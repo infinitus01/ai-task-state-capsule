@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Generated capsules and audit artifacts (keep templates/examples in repo)
+dist/
+output/
+*.zip
+*.zip.sha256
+dist/*.sealed.json
+
+# Local task capsules (user copies)
+my-task-capsule/

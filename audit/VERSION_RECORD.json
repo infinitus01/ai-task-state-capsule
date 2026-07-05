@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.1.2",
+  "release": "v0.1.2 EXTERNAL_SEAL_PATCH",
+  "project_name": "ai-task-state-capsule",
+  "audit_version_hash": null,
+  "capsule_version_hash": "v20260705-0854-ab1b",
+  "created_at": "2026-07-05T08:54:06Z",
+  "generated_by": "grok",
+  "status": "completed",
+  "zip_sha256": null,
+  "integrity_note": "Final audit archive hash is external-only. See adjacent .sha256 and .sealed.json beside the audit ZIP in dist/.",
+  "notes": "capsule_zip_sha256: ab1b00ae8f03d28806e02de588668b89aaeef88a0db25ddacd2357fa7a0fc2f1"
+}

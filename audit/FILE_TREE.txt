@@ -1,0 +1,33 @@
+ai-task-state-capsule/
+├── audit
+├── docs
+│   ├── AI_RESUME_PROTOCOL.md
+│   ├── BRANCH_AND_ROLLBACK.md
+│   ├── CUSTOMIZATION_GUIDE.md
+│   └── VERSION_HASH_RULES.md
+├── examples
+│   └── example-coding-task
+│       ├── BRANCH_INFO.md
+│       ├── DECISION_LOG.md
+│       ├── RECOVERY_CHECK.md
+│       ├── RESUME_INSTRUCTIONS.md
+│       ├── STATE_MANIFEST.json
+│       └── TASK_STATUS_REPORT.md
+├── scripts
+│   ├── generate_audit_zip.py
+│   ├── generate_capsule_zip.py
+│   ├── generate_source_zip.py
+│   ├── pack_common.py
+│   ├── patch_release.py
+│   └── verify_zips.py
+├── templates
+│   ├── BRANCH_INFO.md
+│   ├── DECISION_LOG.md
+│   ├── RECOVERY_CHECK.md
+│   ├── RESUME_INSTRUCTIONS.md
+│   ├── STATE_MANIFEST.json
+│   └── TASK_STATUS_REPORT.md
+├── .gitignore
+├── LICENSE
+├── README.md
+└── RELEASE.md

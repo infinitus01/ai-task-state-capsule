@@ -1,0 +1,218 @@
+[
+  {
+    "path": ".gitignore",
+    "size_bytes": 319,
+    "sha256": "bc85244b4cd6069b44726766ea573416902a32582ec655120f8ffeef31dacf3c",
+    "purpose": "Git ignore rules"
+  },
+  {
+    "path": "LICENSE",
+    "size_bytes": 1090,
+    "sha256": "dc60d03cc8c61c3e00c941ca91f81943e73211e7c5c59769853352b0d986f058",
+    "purpose": "MIT license"
+  },
+  {
+    "path": "README.md",
+    "size_bytes": 4799,
+    "sha256": "5d0d14b9ecc958fc0d445b931879e34844967e1e162266016cbc8af81fb3a5fe",
+    "purpose": "Project overview and quick start"
+  },
+  {
+    "path": "RELEASE.md",
+    "size_bytes": 1912,
+    "sha256": "72efc0082dbeb773dbdf3a258033959c6c5a97990ca7fb448bfddd20a04c5efc",
+    "purpose": "Project file"
+  },
+  {
+    "path": "docs/AI_RESUME_PROTOCOL.md",
+    "size_bytes": 1789,
+    "sha256": "83402deaa430881f7bc214d9cd299098db5baa39b40c54e574c21e64d75748c7",
+    "purpose": "Documentation"
+  },
+  {
+    "path": "docs/BRANCH_AND_ROLLBACK.md",
+    "size_bytes": 1452,
+    "sha256": "56014803c4b19cbf7b82e37e06479ffb748865f6b470065a39e2af5b6974cdd6",
+    "purpose": "Documentation"
+  },
+  {
+    "path": "docs/CUSTOMIZATION_GUIDE.md",
+    "size_bytes": 1911,
+    "sha256": "ea381fc93040a960e2618460c6523a3c085d1912f6a38eb2cb5d1fa376315123",
+    "purpose": "Documentation"
+  },
+  {
+    "path": "docs/VERSION_HASH_RULES.md",
+    "size_bytes": 1787,
+    "sha256": "f6ed8edb8a6e3fcb547cd0bd0d58db08db90c9d74b26580bf31ce5489629b85f",
+    "purpose": "Documentation"
+  },
+  {
+    "path": "examples/example-coding-task/BRANCH_INFO.md",
+    "size_bytes": 855,
+    "sha256": "f45919553ce60d0c83e7255b00d499e563d4b0c3651f2950e150fb1e1d6a89c7",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-coding-task/DECISION_LOG.md",
+    "size_bytes": 1481,
+    "sha256": "3932e8196c335f657a4f1b5782e9bc9a7d23ee9f095f193b79cee1717610258f",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-coding-task/RECOVERY_CHECK.md",
+    "size_bytes": 1170,
+    "sha256": "72a920ad4ce78b41394dbaf7cf4445c936a3d05d1dac67ec8ed20f7412e9b0fa",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-coding-task/RESUME_INSTRUCTIONS.md",
+    "size_bytes": 1236,
+    "sha256": "0b3b00d994aca3cab2a2e3886d88592fd5f9cc6da7444a68df8cbc9b075d6c81",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-coding-task/STATE_MANIFEST.json",
+    "size_bytes": 550,
+    "sha256": "1e428ef517c0ada308a406047422dfbe3f122a2b15e3e951d148e4d861d5caef",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-coding-task/TASK_STATUS_REPORT.md",
+    "size_bytes": 3509,
+    "sha256": "58ad5a242e0ce7f43f7b023ed377cd50b4cd4ad4dea3649b1ed6af9254941ff8",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "scripts/generate_audit_zip.py",
+    "size_bytes": 8989,
+    "sha256": "d0c804aa27a76a08b04679a98af3695ed9d09360e2d2ffbfbdc748c41cedaf70",
+    "purpose": "Packaging / tooling script"
+  },
+  {
+    "path": "scripts/generate_capsule_zip.py",
+    "size_bytes": 4138,
+    "sha256": "82539a3c608bd2e717ac8fccbee1d2ea3b8ff160c8f167578a9c3e4cdec7785c",
+    "purpose": "Packaging / tooling script"
+  },
+  {
+    "path": "scripts/generate_source_zip.py",
+    "size_bytes": 2719,
+    "sha256": "968118a170133bf1abdca459fe2b860dcb0e65032aca2d73ba0514efbf1a3dfe",
+    "purpose": "GitHub-ready source ZIP builder"
+  },
+  {
+    "path": "scripts/pack_common.py",
+    "size_bytes": 2942,
+    "sha256": "c56bf93be897ddd3c05196ef78bdb2170f084997f6f7e9f79981ceb7fd1cd682",
+    "purpose": "Shared packaging helpers"
+  },
+  {
+    "path": "scripts/patch_release.py",
+    "size_bytes": 2242,
+    "sha256": "60794583dd2db73350d08ec527635f1812ffad85280880f275113f50e10f863d",
+    "purpose": "Packaging / tooling script"
+  },
+  {
+    "path": "scripts/verify_zips.py",
+    "size_bytes": 12713,
+    "sha256": "072339ad7d07763054b37ee3de88fa5758fe322c68bd6bc67c1a065d53f82a62",
+    "purpose": "ZIP content verification"
+  },
+  {
+    "path": "templates/BRANCH_INFO.md",
+    "size_bytes": 1288,
+    "sha256": "604fc2c3e0fbe6b250435b892234cdc63cea5b5554983999e32d80a22af55767",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "templates/DECISION_LOG.md",
+    "size_bytes": 743,
+    "sha256": "8e25207da7a55483f997273988bc90cc33d555ecb4ba2b705ebfda59b4d06e63",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "templates/RECOVERY_CHECK.md",
+    "size_bytes": 1816,
+    "sha256": "7c890892dcfba29f28d2de89b3dabaf9be90456ad35b1f6e74dcac892a2d93aa",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "templates/RESUME_INSTRUCTIONS.md",
+    "size_bytes": 1397,
+    "sha256": "8cfa06a7d4b37ae89286f98c8fdec07ad772e9a4a0dd4f417770f84586c22a6a",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "templates/STATE_MANIFEST.json",
+    "size_bytes": 264,
+    "sha256": "f66db1d5ecb7ee640e5d151ec7c1290867e909b1e72a6b24a72141bf57726742",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "templates/TASK_STATUS_REPORT.md",
+    "size_bytes": 1123,
+    "sha256": "6fe2358889dc5ad164717c05512b159db40765b4f5e428a990869f0ca26ea11a",
+    "purpose": "Blank capsule template"
+  },
+  {
+    "path": "audit/ACCEPTANCE_CHECK.md",
+    "size_bytes": 3160,
+    "sha256": "a8c9841179c54e61d146e2ec4f532646e2405d3eef5147ce315d39918624066b",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/DELIVERABLE_MANIFEST.json",
+    "size_bytes": 7330,
+    "sha256": "f19d5bdb4ad9150e1799bae062e497489d9bdc937b0f7296cca788a0be441798",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/FILE_TREE.txt",
+    "size_bytes": 1068,
+    "sha256": "07f52b625e646196469a9ec3941ebf70906c28bfdf8732211a96aa2a0f3149c7",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/LIMITATIONS.md",
+    "size_bytes": 1472,
+    "sha256": "48fd24fe34f0090270afcf3646a05fa160cbe638fe1247d7514a5a884fad3032",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/NEXT_HANDOFF.md",
+    "size_bytes": 2737,
+    "sha256": "67ee19e40b9f0fcc8d499488cf5761f93e34238aee5d0c4ecc704cf690073d40",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/SHA256SUMS.txt",
+    "size_bytes": 2631,
+    "sha256": "f2b3055d5444defb56ecc153049f91ad8a2581a7c45e910f46290b268189708e",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/VERIFICATION_REPORT.md",
+    "size_bytes": 177,
+    "sha256": "40128abd7657a6e453618a0e4c721191c09351220e2ba8958d20e3c390c653d9",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/VERSION_RECORD.json",
+    "size_bytes": 557,
+    "sha256": "f7e6762019c1367585fe874d6073326b80288c2070eb52c7a777573ead1335b1",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "audit/WORK_AUDIT_REPORT.md",
+    "size_bytes": 2667,
+    "sha256": "8d95c700e455a0b8c416f3d2bf9a6b03ba7e736ad4b46a88f9987dd0e01d9c2e",
+    "purpose": "Work audit artifact"
+  },
+  {
+    "path": "dist\\ai-task-state-capsule-v20260705-0854-ab1b.zip",
+    "size_bytes": 4250,
+    "sha256": "ab1b00ae8f03d28806e02de588668b89aaeef88a0db25ddacd2357fa7a0fc2f1",
+    "purpose": "Packaged capsule ZIP"
+  }
+]

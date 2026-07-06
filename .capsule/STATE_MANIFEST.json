@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.2",
+  "project_name": "ai-task-state-capsule",
+  "capsule_type": "ai_task_state_capsule",
+  "version_hash": "v20260706-1200-caps",
+  "previous_version_hash": null,
+  "branch": "main",
+  "created_at": "2026-07-06T12:00:00Z",
+  "created_by": "human",
+  "status": "active",
+  "files": [
+    "TASK_STATUS_REPORT.md",
+    "DECISION_LOG.md",
+    "BRANCH_INFO.md",
+    "RESUME_INSTRUCTIONS.md",
+    "RECOVERY_CHECK.md",
+    "STATE_MANIFEST.json"
+  ],
+  "notes": "Pilot capsule — dogfood trial on this repo. Not a release tag."
+}

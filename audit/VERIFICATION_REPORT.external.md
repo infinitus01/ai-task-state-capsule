@@ -1,7 +1,7 @@
 # Verification Report (External)
 
 Release: v0.1.2 EXTERNAL_SEAL_PATCH
-Generated At: 2026-07-05T08:54:06Z
+Generated At: 2026-07-05T10:37:21Z
 
 Rule: **Do not mark PASS unless the ZIP contents themselves prove the required files exist.**
 
@@ -9,12 +9,12 @@ Note: Audit ZIP final archive hash is **not** recorded inside the audit ZIP. See
 
 ## Overall: PASS
 
-### AUDIT — `ai-task-state-capsule-work-audit-v20260705-0854-457f.zip`
+### AUDIT — `ai-task-state-capsule-work-audit-v20260705-1037-4a32.zip`
 
 - **Overall:** PASS
 - **Contents Check:** PASS
-- **SHA-256:** `457f0bc45a2870fd03dd730a2640758c12850da11cd92c1954a8316a08915c42`
-- **Filename Version Hash:** `v20260705-0854-457f`
+- **SHA-256:** `4a3248f623d6563dfdec885b70ae0b0311eece9d112b2f79bd5f50d9fed9bd4f`
+- **Filename Version Hash:** `v20260705-1037-4a32`
 - **Suffix Matches SHA-256 Prefix:** True
 
 #### Required Files Present
@@ -47,20 +47,20 @@ Note: Audit ZIP final archive hash is **not** recorded inside the audit ZIP. See
 
 ```json
 {
-  "archive": "ai-task-state-capsule-work-audit-v20260705-0854-457f.zip",
-  "archive_sha256": "457f0bc45a2870fd03dd730a2640758c12850da11cd92c1954a8316a08915c42",
-  "audit_version_hash": "v20260705-0854-457f",
-  "sealed_at": "2026-07-05T08:54:06Z",
+  "archive": "ai-task-state-capsule-work-audit-v20260705-1037-4a32.zip",
+  "archive_sha256": "4a3248f623d6563dfdec885b70ae0b0311eece9d112b2f79bd5f50d9fed9bd4f",
+  "audit_version_hash": "v20260705-1037-4a32",
+  "sealed_at": "2026-07-05T10:37:21Z",
   "seal_type": "external_final_archive_record"
 }
 ```
 
-### CAPSULE — `ai-task-state-capsule-v20260705-0854-ab1b.zip`
+### CAPSULE — `ai-task-state-capsule-v20260705-1037-ab1b.zip`
 
 - **Overall:** PASS
 - **Contents Check:** PASS
 - **SHA-256:** `ab1b00ae8f03d28806e02de588668b89aaeef88a0db25ddacd2357fa7a0fc2f1`
-- **Filename Version Hash:** `v20260705-0854-ab1b`
+- **Filename Version Hash:** `v20260705-1037-ab1b`
 - **Suffix Matches SHA-256 Prefix:** True
 
 #### Required Files Present
@@ -78,18 +78,18 @@ Note: Audit ZIP final archive hash is **not** recorded inside the audit ZIP. See
 
 ```json
 {
-  "archive": "ai-task-state-capsule-v20260705-0854-ab1b.zip",
-  "version_hash": "v20260705-0854-ab1b",
+  "archive": "ai-task-state-capsule-v20260705-1037-ab1b.zip",
+  "version_hash": "v20260705-1037-ab1b",
   "archive_sha256": "ab1b00ae8f03d28806e02de588668b89aaeef88a0db25ddacd2357fa7a0fc2f1"
 }
 ```
 
-### SOURCE — `ai-task-state-capsule-source-v20260705-0854-87ce.zip`
+### SOURCE — `ai-task-state-capsule-source-v20260705-1037-c8eb.zip`
 
 - **Overall:** PASS
 - **Contents Check:** PASS
-- **SHA-256:** `87ce7639a8ff3fe0bc91ec6771535aac66fc7dca359e52cf3c1754d6742881aa`
-- **Filename Version Hash:** `v20260705-0854-87ce`
+- **SHA-256:** `c8eb397b46bc4d35ca4aced5d04beea0e938b9cebb175bbdbb787da56d397901`
+- **Filename Version Hash:** `v20260705-1037-c8eb`
 - **Suffix Matches SHA-256 Prefix:** True
 
 #### Required Files Present
@@ -125,8 +125,8 @@ Note: Audit ZIP final archive hash is **not** recorded inside the audit ZIP. See
 
 ```json
 {
-  "archive": "ai-task-state-capsule-source-v20260705-0854-87ce.zip",
-  "version_hash": "v20260705-0854-87ce",
-  "archive_sha256": "87ce7639a8ff3fe0bc91ec6771535aac66fc7dca359e52cf3c1754d6742881aa"
+  "archive": "ai-task-state-capsule-source-v20260705-1037-c8eb.zip",
+  "version_hash": "v20260705-1037-c8eb",
+  "archive_sha256": "c8eb397b46bc4d35ca4aced5d04beea0e938b9cebb175bbdbb787da56d397901"
 }
 ```

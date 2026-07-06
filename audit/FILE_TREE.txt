@@ -4,15 +4,24 @@ ai-task-state-capsule/
 │   ├── AI_RESUME_PROTOCOL.md
 │   ├── BRANCH_AND_ROLLBACK.md
 │   ├── CUSTOMIZATION_GUIDE.md
+│   ├── INTERLOCK_LAYER.md
 │   └── VERSION_HASH_RULES.md
 ├── examples
-│   └── example-coding-task
-│       ├── BRANCH_INFO.md
-│       ├── DECISION_LOG.md
-│       ├── RECOVERY_CHECK.md
-│       ├── RESUME_INSTRUCTIONS.md
-│       ├── STATE_MANIFEST.json
-│       └── TASK_STATUS_REPORT.md
+│   ├── example-coding-task
+│   │   ├── BRANCH_INFO.md
+│   │   ├── DECISION_LOG.md
+│   │   ├── RECOVERY_CHECK.md
+│   │   ├── RESUME_INSTRUCTIONS.md
+│   │   ├── STATE_MANIFEST.json
+│   │   └── TASK_STATUS_REPORT.md
+│   ├── example-twse-research
+│   │   ├── BRANCH_INFO.md
+│   │   ├── DECISION_LOG.md
+│   │   ├── RECOVERY_CHECK.md
+│   │   ├── RESUME_INSTRUCTIONS.md
+│   │   ├── STATE_MANIFEST.json
+│   │   └── TASK_STATUS_REPORT.md
+│   └── README.md
 ├── scripts
 │   ├── generate_audit_zip.py
 │   ├── generate_capsule_zip.py

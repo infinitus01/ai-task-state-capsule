@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.1.2",
+  "project_name": "TWSE Plus-3 A/B research + C-track adapter",
+  "capsule_type": "ai_task_state_capsule",
+  "version_hash": "v20260705-1200-twse",
+  "previous_version_hash": null,
+  "branch": "main",
+  "created_at": "2026-07-05T12:00:00Z",
+  "created_by": "human",
+  "status": "active",
+  "task_mode": "research-not-trading",
+  "related_repo": "twse_daytrade",
+  "files": [
+    "TASK_STATUS_REPORT.md",
+    "DECISION_LOG.md",
+    "BRANCH_INFO.md",
+    "RESUME_INSTRUCTIONS.md",
+    "RECOVERY_CHECK.md",
+    "STATE_MANIFEST.json"
+  ],
+  "notes": "Example capsule for long-running quant research handoff. Not a trading signal pack."
+}

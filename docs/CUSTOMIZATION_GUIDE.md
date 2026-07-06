@@ -2,7 +2,7 @@
 
 ## Directory Layout
 
-**Recommended (proposed for Context Relay v0.1):**
+**Recommended layout:**
 
 ```text
 your-repo/

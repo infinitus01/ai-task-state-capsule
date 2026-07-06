@@ -1,5 +1,12 @@
 # Release Notes
 
+## v0.1.4 INTERLOCK_LAYER_DOC_PATCH
+
+Documentation-only patch. No scripts, templates, examples, or seal logic changes.
+
+- Added [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md) — AI Workflow Interlock Layer concept
+- Shortened README positioning section; links to concept doc
+
 ## v0.1.3 DOC_HYGIENE_PATCH
 
 Documentation-only patch. No packaging architecture changes.

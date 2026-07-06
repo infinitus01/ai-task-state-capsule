@@ -13,14 +13,14 @@
   },
   {
     "path": "README.md",
-    "size_bytes": 4799,
-    "sha256": "5d0d14b9ecc958fc0d445b931879e34844967e1e162266016cbc8af81fb3a5fe",
+    "size_bytes": 5486,
+    "sha256": "3da0b9879a51de59ac8ecb741f23d93d75f05301e0192bd37fe0ea3fb419b8a1",
     "purpose": "Project overview and quick start"
   },
   {
     "path": "RELEASE.md",
-    "size_bytes": 1912,
-    "sha256": "72efc0082dbeb773dbdf3a258033959c6c5a97990ca7fb448bfddd20a04c5efc",
+    "size_bytes": 2195,
+    "sha256": "c785ae98f5445cf39ccb81c5d38423de480b780178b495bd285d9b0b3ebfe425",
     "purpose": "Project file"
   },
   {
@@ -37,8 +37,14 @@
   },
   {
     "path": "docs/CUSTOMIZATION_GUIDE.md",
-    "size_bytes": 1911,
-    "sha256": "ea381fc93040a960e2618460c6523a3c085d1912f6a38eb2cb5d1fa376315123",
+    "size_bytes": 1884,
+    "sha256": "be8027e2f37880b11bfdadc19c2c7422b220105f12ef42d7a9628ef05c6845a7",
+    "purpose": "Documentation"
+  },
+  {
+    "path": "docs/INTERLOCK_LAYER.md",
+    "size_bytes": 5427,
+    "sha256": "9757b5a53dbbea95327390639e565d17979cc0226698bd9b017c24552a00287b",
     "purpose": "Documentation"
   },
   {
@@ -46,6 +52,12 @@
     "size_bytes": 1787,
     "sha256": "f6ed8edb8a6e3fcb547cd0bd0d58db08db90c9d74b26580bf31ce5489629b85f",
     "purpose": "Documentation"
+  },
+  {
+    "path": "examples/README.md",
+    "size_bytes": 772,
+    "sha256": "5c7bdbd4feff59a458119455c8e1d05926789ff7e46a88d9905ef82bf1cd9540",
+    "purpose": "Filled example capsule"
   },
   {
     "path": "examples/example-coding-task/BRANCH_INFO.md",
@@ -81,6 +93,42 @@
     "path": "examples/example-coding-task/TASK_STATUS_REPORT.md",
     "size_bytes": 3509,
     "sha256": "58ad5a242e0ce7f43f7b023ed377cd50b4cd4ad4dea3649b1ed6af9254941ff8",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/BRANCH_INFO.md",
+    "size_bytes": 931,
+    "sha256": "d9afcb8c1b481c263c7e9d03fd80473f92334f8e0cbc178ca34716e5a3f5f278",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/DECISION_LOG.md",
+    "size_bytes": 3581,
+    "sha256": "2bab748c2a4a8f59e9b45a842aa042e5fd140b60fbe6d9a5238268d4fb536473",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/RECOVERY_CHECK.md",
+    "size_bytes": 1382,
+    "sha256": "2504fdc91bccbcdeb80b41e4e3435c57167e2030633e23b5704eed01a9f0b73e",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/RESUME_INSTRUCTIONS.md",
+    "size_bytes": 1366,
+    "sha256": "07f75d955eac90183e3bac852a6e5584668d2ae280ad7bdfda4042b9c5f24c9b",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/STATE_MANIFEST.json",
+    "size_bytes": 664,
+    "sha256": "db49efe8043a63a8c3f85a5d0bfc8ccad33ed96a9e9bc6814eb3fa94c95d0011",
+    "purpose": "Filled example capsule"
+  },
+  {
+    "path": "examples/example-twse-research/TASK_STATUS_REPORT.md",
+    "size_bytes": 5252,
+    "sha256": "c8fc8d645dbbadc764563b7f5083c6b9ad97503c87819bef6c2516f2bd92c087",
     "purpose": "Filled example capsule"
   },
   {
@@ -164,13 +212,13 @@
   {
     "path": "audit/DELIVERABLE_MANIFEST.json",
     "size_bytes": 7330,
-    "sha256": "f19d5bdb4ad9150e1799bae062e497489d9bdc937b0f7296cca788a0be441798",
+    "sha256": "2d8a0a72a47c0056137c2ff4451836adedac07ccea72b7983cd1a5dbc4793a4d",
     "purpose": "Work audit artifact"
   },
   {
     "path": "audit/FILE_TREE.txt",
-    "size_bytes": 1068,
-    "sha256": "07f52b625e646196469a9ec3941ebf70906c28bfdf8732211a96aa2a0f3149c7",
+    "size_bytes": 1434,
+    "sha256": "b5724af1933d821b366bb4bbcc5d5ab35b0238fe530bcf98ddcbe04761d1649c",
     "purpose": "Work audit artifact"
   },
   {
@@ -187,8 +235,8 @@
   },
   {
     "path": "audit/SHA256SUMS.txt",
-    "size_bytes": 2631,
-    "sha256": "f2b3055d5444defb56ecc153049f91ad8a2581a7c45e910f46290b268189708e",
+    "size_bytes": 3510,
+    "sha256": "fc2cffaa008a7b87e889b8cac905a041c9e91cf516bd5654906379d4af7e8e0b",
     "purpose": "Work audit artifact"
   },
   {
@@ -200,7 +248,7 @@
   {
     "path": "audit/VERSION_RECORD.json",
     "size_bytes": 557,
-    "sha256": "f7e6762019c1367585fe874d6073326b80288c2070eb52c7a777573ead1335b1",
+    "sha256": "3212fa1ce1a60c26ff42bec33827e6425f5103d61969d8610280a8d68f8585dd",
     "purpose": "Work audit artifact"
   },
   {
@@ -210,7 +258,7 @@
     "purpose": "Work audit artifact"
   },
   {
-    "path": "dist\\ai-task-state-capsule-v20260705-0854-ab1b.zip",
+    "path": "dist\\ai-task-state-capsule-v20260705-1037-ab1b.zip",
     "size_bytes": 4250,
     "sha256": "ab1b00ae8f03d28806e02de588668b89aaeef88a0db25ddacd2357fa7a0fc2f1",
     "purpose": "Packaged capsule ZIP"

@@ -1,62 +1,97 @@
 # ai-task-state-capsule
 
-A lightweight, local-first task state capsule format for long-running AI workflows.
+A lightweight, local-first **task state capsule format** for long-running AI workflows.
 
-## Problem
+> **Status:** early release (v0.1.4). File format + templates + packaging scripts — not a hosted product, IDE plugin, or auto-sync service.
 
-Long AI coding and research tasks accumulate state in chat history. That state is:
+## Positioning: the Gap Between AI Endpoints
 
-- Hard to version or diff
-- Fragile when sessions expire or context windows fill
-- Difficult to hand off to another AI session or human
-- Easy to lose when the model drifts or branches fail
+Most AI tools optimize models, IDEs, and agents. This project optimizes **what happens between them** — handoff, verification, evidence, and resume across sessions and tools.
 
-This project provides a **structured, file-based capsule** you can commit to Git, branch, zip, and resume.
+That middle layer is the **AI Workflow Interlock Layer**. This repo implements one concrete format for it: the task state capsule.
 
-## What is an AI Task State Capsule?
+Full concept: [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md)
 
-An AI Task State Capsule is a small set of markdown and JSON files that compress the essential state of a long-running task:
+## What this is
+
+When a coding or research task spans multiple AI sessions, chat history becomes hard to diff, hand off, and recover. This project defines six files that capture **durable task state**:
 
 | File | Purpose |
 |------|---------|
 | `TASK_STATUS_REPORT.md` | Progress, blockers, next actions, compressed summary |
 | `DECISION_LOG.md` | Decisions, rationale, alternatives, status |
-| `BRANCH_INFO.md` | Branch naming and lineage for experiments / rollbacks |
+| `BRANCH_INFO.md` | Experiment / rollback / review branch lineage |
 | `RESUME_INSTRUCTIONS.md` | Copy-paste prompt for the next AI session |
-| `RECOVERY_CHECK.md` | Checklist when the task has drifted or failed |
-| `STATE_MANIFEST.json` | Machine-readable metadata and file index |
+| `RECOVERY_CHECK.md` | Checklist when the AI drifts or a branch fails |
+| `STATE_MANIFEST.json` | Machine-readable metadata |
 
-The capsule is **not** a chat export. It is a **curated snapshot** optimized for resumption and audit.
+Think: **checkpoint save for AI work** — versioned, auditable, tool-neutral.
 
-## Use Cases
+## What this is not
 
-- Multi-day coding tasks across Codex, Claude Code, Grok, Cursor, or Antigravity
-- Research tasks that need decision trails and experiment notes
-- Prototype work where you branch ideas and may need rollback
-- Handing off from one AI session to another with minimal context loss
-- Local version control alongside your code repo (or as a sibling directory)
+Do not mistake this project for:
 
-## Quick Start
+| Misread | Reality |
+|---------|---------|
+| Prompt manager / prompt library | Curated **task state**, not prompt collection |
+| Chat exporter | Intentionally **not** a raw chat dump |
+| Clipboard watcher | No background capture |
+| Cloud sync platform | Local-first; ZIP/Git optional |
+| VS Code / Chrome extension | File format only |
+| Trading system / strategy platform | Can document research state; does not execute trades |
+| Replacement for Git, issues, or design docs | Complements them for **session handoff** |
 
-1. Copy `templates/` into your task directory (or use an example as reference):
+## Who it is for
 
-   ```bash
-   cp -r templates/ my-task-capsule/
-   ```
+- Developers using Codex, Claude Code, Grok, Cursor, or similar for **multi-day tasks**
+- Research workflows with experiments, rejected options, and hard gates
+- Teams that need **human or AI handoff** without re-explaining context
+- Anyone who wants task state beside a code repo (`.capsule/` or sibling folder)
 
-2. Fill in `TASK_STATUS_REPORT.md` and `STATE_MANIFEST.json` as you work.
+## Who it is not for
 
-3. Commit the capsule to Git when you reach a stable checkpoint.
+- One-shot Q&A
+- Teams already fully covered by tickets + specs + CI with no AI handoff pain
+- Real-time automation or intraday decision systems
 
-4. When resuming, paste the contents of `RESUME_INSTRUCTIONS.md` into a new AI session.
+## Examples
 
-5. If the AI drifts, run through `RECOVERY_CHECK.md` before continuing.
+| Example | Shows |
+|---------|-------|
+| [`examples/example-coding-task/`](examples/example-coding-task/) | Generic multi-day coding / planning capsule |
+| [`examples/example-twse-research/`](examples/example-twse-research/) | Real-style **research-state** capsule: baseline null, virtual trade blocked, read-only audit adapter |
 
-See `examples/example-coding-task/` for a filled-in sample.
+The TWSE example demonstrates a common high-value pattern:
 
-## Release (v0.1.2)
+```text
+research mode ≠ trade mode
+baseline not accepted → do not enable simulation
+next step = dry-run export / audit only
+```
 
-Audit archives use **external sealing**:
+## Quick start
+
+```bash
+cp -r templates/ my-task-capsule/
+# edit TASK_STATUS_REPORT.md + STATE_MANIFEST.json as you work
+git add my-task-capsule/
+```
+
+Resume in a new AI session:
+
+1. Paste `RESUME_INSTRUCTIONS.md` into the new session
+2. Attach the capsule files (or a sealed ZIP)
+3. If the AI drifts, run `RECOVERY_CHECK.md`
+
+## Packaging
+
+```bash
+python scripts/patch_release.py          # source + capsule + audit ZIPs
+python scripts/generate_capsule_zip.py --source examples/example-twse-research
+python scripts/verify_zips.py
+```
+
+Audit archives use **external sealing** (final SHA not stored inside the audit ZIP):
 
 ```text
 dist/ai-task-state-capsule-work-audit-v....zip
@@ -64,90 +99,56 @@ dist/ai-task-state-capsule-work-audit-v....zip.sha256
 dist/ai-task-state-capsule-work-audit-v....sealed.json   # external .sealed.json
 ```
 
-The audit ZIP itself does not record its final SHA-256.
+## Version hash
 
-## Release (v0.1.1)
+Format: `vYYYYMMDD-HHMM-xxxx` — see [`docs/VERSION_HASH_RULES.md`](docs/VERSION_HASH_RULES.md).
 
-```bash
-python scripts/patch_release.py
-```
+## Branching and recovery
 
-Produces source ZIP, capsule ZIP, audit ZIP, and `audit/VERIFICATION_REPORT.md`.
+Lightweight branch names: `main`, `experiment/<name>`, `rollback/<hash>`, `review/<name>`.
 
-## Generating a ZIP Capsule
+See [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md) and [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md).
 
-From the project root:
+## Suggested GitHub repo metadata
 
-```bash
-python scripts/generate_capsule_zip.py --source templates
-python scripts/generate_capsule_zip.py --source examples/example-coding-task
-python scripts/generate_source_zip.py
-python scripts/verify_zips.py
-```
+**Name:** `ai-task-state-capsule`
 
-Output:
-
+**Description (short):**
 ```text
-Capsule ZIP:
-Version Hash:
-SHA-256:
-Included Files:
+Local-first file format for versioning, handoff, and recovery of long-running AI task state.
 ```
 
-ZIP filename format: `ai-task-state-capsule-vYYYYMMDD-HHMM-xxxx.zip`
+**Topics:** `ai-workflow`, `developer-tools`, `markdown`, `handoff`, `context-management`
 
-## Version Hash
+**Do not use in description:** "prompt manager", "clipboard", "cloud platform", "autopilot", "trading bot"
 
-Each packaged capsule gets a version hash: `vYYYYMMDD-HHMM-xxxx`
+## Maturity
 
-- **Timestamp** (`YYYYMMDD-HHMM`): when the capsule was sealed
-- **Short suffix** (`xxxx`): first 4 hex chars of SHA-256 over ZIP contents (or random fallback)
+| Area | Status |
+|------|--------|
+| File format | usable v0.1 |
+| Templates + examples | yes |
+| Packaging / verification scripts | yes |
+| JSON Schema validation | not yet |
+| Editor integrations | not planned as core |
+| Community adoption | early / personal-scale |
 
-Use the hash to:
+## Future extensions
 
-- Reference a specific checkpoint in `TASK_STATUS_REPORT.md` and `RESUME_INSTRUCTIONS.md`
-- Chain versions via `previous_version_hash` in `STATE_MANIFEST.json`
-- Verify integrity against the ZIP SHA-256
-
-See `docs/VERSION_HASH_RULES.md` for details.
-
-## Branching and Recovery
-
-Treat capsule branches like lightweight Git branches:
-
-- `main` — current canonical task state
-- `experiment/<name>` — exploratory paths
-- `rollback/<hash>` — frozen snapshot before a risky change
-- `review/<name>` — human or AI review checkpoints
-
-When an experiment fails, restore from `rollback/<hash>` or regenerate from a versioned ZIP.
-
-See `docs/BRANCH_AND_ROLLBACK.md` and `docs/AI_RESUME_PROTOCOL.md`.
-
-## What This Project Does Not Do
-
-- HEA-specific or domain-locked workflows
-- Cloud sync or hosted state services
-- Clipboard monitoring or automatic chat capture
-- Browser extensions, VS Code extensions, or sidecar daemons
-- Financial compliance or enterprise platform narratives
-- Replacing your code repository — it complements it
-
-## Future Extensions
-
-- JSON Schema validation for `STATE_MANIFEST.json`
-- CLI to diff two capsule versions
-- Optional encryption for sensitive task metadata
-- Integration hooks (export from Cursor / Claude exports) as **optional** adapters, not core
-- Template packs for research vs. coding vs. ops tasks
+- JSON Schema for `STATE_MANIFEST.json`
+- Capsule diff CLI
+- Optional encryption for sensitive metadata
+- Optional export adapters (never required for core use)
 
 ## License
 
-MIT — see `LICENSE`.
+MIT — see [`LICENSE`](LICENSE).
 
 ## Documentation
 
-- `docs/VERSION_HASH_RULES.md`
-- `docs/BRANCH_AND_ROLLBACK.md`
-- `docs/AI_RESUME_PROTOCOL.md`
-- `docs/CUSTOMIZATION_GUIDE.md`
+- [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md)
+- [`docs/VERSION_HASH_RULES.md`](docs/VERSION_HASH_RULES.md)
+- [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md)
+- [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md)
+- [`docs/CUSTOMIZATION_GUIDE.md`](docs/CUSTOMIZATION_GUIDE.md)
+- [`RELEASE.md`](RELEASE.md)

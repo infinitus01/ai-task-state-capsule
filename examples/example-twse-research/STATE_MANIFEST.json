@@ -1,5 +1,7 @@
 {
   "schema_version": "0.1.2",
+  "example_type": "domain-research-capsule",
+  "repo_release": "v0.1.4",
   "project_name": "TWSE Plus-3 A/B research + C-track adapter",
   "capsule_type": "ai_task_state_capsule",
   "version_hash": "v20260705-1200-twse",
@@ -10,6 +12,7 @@
   "status": "active",
   "task_mode": "research-not-trading",
   "related_repo": "twse_daytrade",
+  "capsule_content_sha256": null,
   "files": [
     "TASK_STATUS_REPORT.md",
     "DECISION_LOG.md",
@@ -18,5 +21,5 @@
     "RECOVERY_CHECK.md",
     "STATE_MANIFEST.json"
   ],
-  "notes": "Example capsule for long-running quant research handoff. Not a trading signal pack."
+  "notes": "Example capsule for long-running quant research handoff. Not a trading signal pack. version_hash is a human-readable state identifier for AI resume — not a cryptographic archive hash. Set capsule_content_sha256 when sealing a ZIP artifact."
 }

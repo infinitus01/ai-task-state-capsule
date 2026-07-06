@@ -1,5 +1,7 @@
 # AI Task Status Report
 
+> **Disclaimer:** This capsule is **research-state handoff only**. It is not investment advice, trading instruction, or an execution authority pack.
+
 Generated At: 2026-07-05T12:00:00Z
 Task / Project Name: TWSE Plus-3 A/B research + C-track adapter (research state)
 Version Hash: v20260705-1200-twse
@@ -61,8 +63,8 @@ Current Stage: research-collection / adapter-dry-run
 - DEC-20260705-002: Canonical export percentages as ratio, not percentage-points (accepted)
 
 ### Important Settings / Parameters / Resources
-- Project path: `C:\Users\Ming\Downloads\TEST001\twse_daytrade`
-- Local service: `http://127.0.0.1:8088/`
+- Related repo: `twse_daytrade` (local path: private / user-specific)
+- Local service: `<LOCAL_SERVICE_URL>` (e.g. dev API on your machine — not published)
 - Last known full test run (handoff record): 2026-07-03, 104 passed
 - Baseline files: `research_results/plus3_scalp_baseline.json`, `research_results/plus3_confirmation_baseline.json`
 - Mapping: `config/c_track_adapter_mapping.twse.yaml`

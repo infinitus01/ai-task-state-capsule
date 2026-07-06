@@ -8,7 +8,7 @@ You are resuming a long-running TWSE research task from a Task State Capsule.
 Task / Project: TWSE Plus-3 A/B research + C-track adapter
 Version Hash: v20260705-1200-twse
 Branch: main
-Related repo: C:\Users\Ming\Downloads\TEST001\twse_daytrade
+Related repo: twse_daytrade (local path: private / user-specific)
 Capsule role: research-state handoff only — NOT trading instructions
 
 Current mode:

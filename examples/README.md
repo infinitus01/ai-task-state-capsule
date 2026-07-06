@@ -27,6 +27,8 @@ Research-state capsule modeled on a real long-running quant workflow:
 
 Use when your task is **research or audit mode**, not release mode.
 
+Paths in this example use placeholders (`<LOCAL_SERVICE_URL>`, `private / user-specific`) — not real machine paths. `version_hash` is a resume identifier, not a cryptographic SHA; see manifest `notes`.
+
 ## Copy an example
 
 ```bash

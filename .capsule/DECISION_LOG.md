@@ -22,6 +22,16 @@
 - **Consequences:** Recovery uses `git checkout capsule/v20260706-1200-caps` plus restored capsule files.
 - **Links:** commit at pilot bootstrap
 
+### DEC-20260706-005: T1 second cold handoff PASS (2/3)
+- **Date:** 2026-07-06
+- **Status:** accepted
+- **Context:** T1 test A repeated from `v20260706-1600-flow`.
+- **Decision:** Record 2/3 PASS; roll to `v20260706-1800-t1b`.
+- **Rationale:** Hash, branch, Priority Action 1, first-response contract all correct; AI also ran tag + verify_capsule.
+- **Alternatives considered:** Require 3/3 before any T2 (rejected — T2 is higher value next).
+- **Consequences:** Next priority is Exp-pilot-03 T2 rollback.
+- **Links:** `capsule/v20260706-1800-t1b`
+
 ### DEC-20260706-004: Formalize handoff tests before second repo
 - **Date:** 2026-07-06
 - **Status:** accepted

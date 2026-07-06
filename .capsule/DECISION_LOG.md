@@ -22,6 +22,16 @@
 - **Consequences:** Recovery uses `git checkout capsule/v20260706-1200-caps` plus restored capsule files.
 - **Links:** commit at pilot bootstrap
 
+### DEC-20260706-006: T2 rollback drill PASS — pilot exit
+- **Date:** 2026-07-06
+- **Status:** accepted
+- **Context:** Checked out `capsule/v20260706-1400-hand`; cold resume at historical checkpoint.
+- **Decision:** Record Exp-pilot-03 PASS; mark pilot procedurally complete at 2/3 T1 + 1/1 T2.
+- **Rationale:** AI used old hash, old Priority Action 1, no bleed from 1600/1800; correctly noted verify_capsule missing at old commit.
+- **Alternatives considered:** Require T1 3/3 before exit (rejected — diminishing returns).
+- **Consequences:** Next value step is second-repo copy, not more protocol docs.
+- **Links:** `capsule/v20260706-2000-t2p`
+
 ### DEC-20260706-005: T1 second cold handoff PASS (2/3)
 - **Date:** 2026-07-06
 - **Status:** accepted

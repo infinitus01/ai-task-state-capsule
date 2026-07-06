@@ -15,7 +15,7 @@
 
 ## Git alignment
 
-- Capsule hash: `v20260706-1800-t1b`
-- Previous hash: `v20260706-1600-flow`
-- Git tag: `capsule/v20260706-1800-t1b`
+- Capsule hash: `v20260706-2000-t2p`
+- Previous hash: `v20260706-1800-t1b`
+- Git tag: `capsule/v20260706-2000-t2p`
 - Repo: https://github.com/infinitus01/ai-task-state-capsule

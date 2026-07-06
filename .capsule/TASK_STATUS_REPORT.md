@@ -2,65 +2,52 @@
 
 Generated At: 2026-07-06
 Task / Project Name: ai-task-state-capsule
-Version Hash: v20260706-1800-t1b
-Previous Version Hash: v20260706-1600-flow
+Version Hash: v20260706-2000-t2p
+Previous Version Hash: v20260706-1800-t1b
 Current Branch: main
-Current Stage: Pilot — T1 cold handoff 2/3 PASS
+Current Stage: Pilot — exit criteria met (T1 2/3 + T2 PASS)
 
 ## 1. Overall Progress
-- Completion: ~88% toward “usable personal workflow”
-- Current Stage: Fourth capsule checkpoint; handoff quality improving
+- Completion: ~92% toward “usable personal workflow”
+- Current Stage: Fifth capsule checkpoint; pilot procedurally complete
 
 ## 2. Status Classification
 ### Done
 - GitHub repo published (public), topics set
-- v0.1.4 released (INTERLOCK_LAYER doc, TWSE example)
-- Motivation essays EN + ZH
-- Git + capsule alignment guide EN + ZH
-- Packaging scripts + external audit seal verified (last run v0.1.4 patch)
-- Handoff test protocol EN + ZH + `verify_capsule.py` + first-response contract
-- Cross-AI handoff T1 PASS × 2 (2026-07-06) — second run also executed `git tag` + `verify_capsule.py --check-git-tag`
+- v0.1.4 released + docs/tooling through handoff protocol + verify_capsule.py
+- T1 cold handoff **2/3 PASS** (two external AI sessions)
+- **T2 rollback drill PASS** (2026-07-06) — `git checkout capsule/v20260706-1400-hand`; AI cited old hash, old Priority Action 1, no future-state bleed; noted verify_capsule absent at old commit (valid rollback signal)
+- Hash chain depth 5; verifier PASS on latest rolls
 
 ### In Progress
-- Pilot Exp-pilot-01: T1 **2/3 PASS** — one optional third T1 remaining
-- Exp-pilot-03: T2 rollback drill — next procedural test
+- Optional: T1 3/3 (third tool) — not required for pilot exit
+- Decide whether to copy `templates/` to a second real repo
 
 ### Todo
-- **Priority:** T2 rollback drill to `capsule/v20260706-1400-hand` per HANDOFF_TEST_PROTOCOL
-- Optional: T1 × 3/3 (third tool) for tool-neutrality confidence
-- Tag `v0.1.5` only if explicit release patch
-- Optional: JSON Schema, capsule diff CLI (post-pilot)
+- Copy capsule pattern to one other long-running task (user choice, non-mandatory)
+- v0.1.5 / JSON Schema / diff CLI — only if explicit release scope
 
 ### Blockers / Risks
-- None hard.
+- None.
 
 ### Key Insights & Learnings
-- Second T1 showed AI can self-run verifier when instructed — stronger than narrative-only resume.
-- First-response contract held across two different AI sessions.
+- T2 proved capsule + Git tag can restore AI narrative to an earlier world-line.
+- Absence of newer files (verify_capsule) at old tag is a useful rollback sanity check.
 
 ### Experiments / Tests
-- **Exp-pilot-01:** T1 **2/3 PASS** — run1 external AI; run2 external AI + tag verify + verify_capsule PASS
-- **Exp-pilot-02:** `verify_capsule.py` — PASS at each T3 roll
-- **Exp-pilot-03:** T2 rollback — **not run yet**
-
-## 3. Key Information Snapshot
-### Major Decisions
-- See `DECISION_LOG.md`
-
-### Important Settings / Parameters / Resources
-- Repo: https://github.com/infinitus01/ai-task-state-capsule
-- Capsule: `.capsule/`
-- Test protocol: `docs/HANDOFF_TEST_PROTOCOL.md`
+- **Exp-pilot-01:** T1 **2/3 PASS**
+- **Exp-pilot-02:** `verify_capsule.py` — PASS at T3 rolls on `main`
+- **Exp-pilot-03:** T2 rollback — **PASS** (2026-07-06)
 
 ## 4. Next Actions
 ### Priority Action 1
-Run T2 rollback drill per HANDOFF_TEST_PROTOCOL (restore `capsule/v20260706-1400-hand` narrative); record PASS/FAIL in Exp-pilot-03.
+User decision: pick one non-confidential long-running repo and `cp -r templates/` → `.capsule/` for second dogfood, or pause pilot here.
 
 ### Priority Action 2
-Optional third T1 cold handoff, or exit pilot after T2 PASS if 2/3 T1 deemed sufficient.
+Optional T1 3/3 for extra tool-neutrality confidence.
 
 ## 5. Compressed Summary
-The pilot has four capsule checkpoints in a hash chain. Two T1 cold handoffs passed with correct hash, branch, Priority Action 1, and no scope creep; the second also ran git tag confirmation and verify_capsule.py successfully. Workflow tooling (handoff protocol, verifier, resume contract) is in place. Release remains v0.1.4. The critical remaining procedural test is T2 rollback to an earlier capsule tag. One optional third T1 would complete 3/3. Pilot exit is near after T2 PASS.
+The single-repo pilot is procedurally complete. Two cold handoffs and one rollback drill passed. Rollback at `capsule/v20260706-1400-hand` produced correct historical narrative without leaking later milestones (verify_capsule, T1 2/3, handoff protocol). Five capsule hashes are chained with matching Git tags. Release stays v0.1.4. Next value step is applying the pattern to one additional real task—not expanding this repo’s feature scope.
 
 ## 6. Resume Instruction
-Resume this task from version v20260706-1800-t1b.
+Resume this task from version v20260706-2000-t2p.

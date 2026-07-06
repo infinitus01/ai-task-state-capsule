@@ -2,10 +2,10 @@
   "schema_version": "0.1.2",
   "project_name": "ai-task-state-capsule",
   "capsule_type": "ai_task_state_capsule",
-  "version_hash": "v20260706-1800-t1b",
-  "previous_version_hash": "v20260706-1600-flow",
+  "version_hash": "v20260706-2000-t2p",
+  "previous_version_hash": "v20260706-1800-t1b",
   "branch": "main",
-  "created_at": "2026-07-06T18:00:00Z",
+  "created_at": "2026-07-06T20:00:00Z",
   "created_by": "human",
   "status": "active",
   "files": [
@@ -16,5 +16,5 @@
     "RECOVERY_CHECK.md",
     "STATE_MANIFEST.json"
   ],
-  "notes": "Pilot checkpoint 4 — T1 second cold handoff PASS recorded"
+  "notes": "Pilot checkpoint 5 — T2 rollback PASS; pilot exit criteria met"
 }

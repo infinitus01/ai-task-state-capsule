@@ -6,6 +6,16 @@ Generic capsule for a multi-day coding / planning task (Context Relay v0.1 plann
 
 Use when you want a **neutral template** without domain-specific gates.
 
+## `handoff-pilot-hypothesis/`
+
+**Public sanitized** cross-AI handoff demo (no secrets, no local paths):
+
+- Full workspace layout: `.capsule/` + `work/` (toy pilots RUN-001 / RUN-002)
+- `PILOT_EVIDENCE.md` — reproduce T1 cold handoff, T2 rollback, `verify_capsule.py`
+- `checkpoints/v20260706-2500-run1/` — frozen earlier hash for rollback drill
+
+Use when you want **auditable proof** that capsule handoff and rollback work. Copy to a private workspace for real tasks.
+
 ## `example-twse-research/`
 
 Research-state capsule modeled on a real long-running quant workflow:

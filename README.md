@@ -12,7 +12,7 @@ Most AI tools optimize models, IDEs, and agents. This project optimizes **what h
 
 That middle layer is the **AI Workflow Interlock Layer**. This repo implements one concrete format for it: the task state capsule.
 
-Full concept: [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md)
+**Conceptual core (read first):** [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md) — endpoint interface format, Context / Control / Evidence, and how the two public examples prove domain vs process interlock.
 
 ## What this is
 
@@ -58,12 +58,18 @@ Do not mistake this project for:
 
 ## Examples
 
-| Example | Shows |
-|---------|-------|
-| [`examples/example-coding-task/`](examples/example-coding-task/) | Generic multi-day coding / planning capsule |
-| [`examples/example-twse-research/`](examples/example-twse-research/) | Real-style **research-state** capsule: baseline null, virtual trade blocked, read-only audit adapter |
+| Example | Interlock axis | Shows |
+|---------|----------------|-------|
+| [`examples/example-coding-task/`](examples/example-coding-task/) | (neutral) | Generic multi-day coding / planning capsule |
+| [`examples/example-twse-research/`](examples/example-twse-research/) | **Domain boundary** | Research-state capsule: baseline null, virtual trade blocked, C-track audit-only |
+| [`examples/handoff-pilot-hypothesis/`](examples/handoff-pilot-hypothesis/) | **Process boundary** | Sanitized handoff + sync build + rollback checkpoint; see `PILOT_EVIDENCE.md` |
 
-The TWSE example demonstrates a common high-value pattern:
+```text
+example-twse-research      → what the task must NOT become (research ≠ trade)
+handoff-pilot-hypothesis   → how the task IS handed off (resume / verify / rollback)
+```
+
+TWSE pattern:
 
 ```text
 research mode ≠ trade mode

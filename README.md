@@ -4,7 +4,7 @@ A lightweight, local-first **task state capsule format** for long-running AI wor
 
 > **Status:** early release (v0.1.4). File format + templates + packaging scripts — not a hosted product, IDE plugin, or auto-sync service.
 
-**Why this exists (short essay):** [`docs/WHY_TASK_STATE_CAPSULE.md`](docs/WHY_TASK_STATE_CAPSULE.md)
+**Why this exists (short essay):** [English](docs/WHY_TASK_STATE_CAPSULE.md) · [中文](docs/WHY_TASK_STATE_CAPSULE.zh.md)
 
 ## Positioning: the Gap Between AI Endpoints
 
@@ -148,7 +148,7 @@ MIT — see [`LICENSE`](LICENSE).
 
 ## Documentation
 
-- [`docs/WHY_TASK_STATE_CAPSULE.md`](docs/WHY_TASK_STATE_CAPSULE.md) — domain-neutral motivation essay
+- [`docs/WHY_TASK_STATE_CAPSULE.md`](docs/WHY_TASK_STATE_CAPSULE.md) · [`docs/WHY_TASK_STATE_CAPSULE.zh.md`](docs/WHY_TASK_STATE_CAPSULE.zh.md) — motivation essay (EN / 中文)
 - [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md)
 - [`docs/VERSION_HASH_RULES.md`](docs/VERSION_HASH_RULES.md)
 - [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md)

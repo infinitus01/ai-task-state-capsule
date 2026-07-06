@@ -102,4 +102,5 @@ I started asking, **"Do I have task state worth handing off?"**
 
 Standardizing how long tasks survive across sessions matters more to me right now than promoting a product narrative.
 
-For the full concept layer, see [`INTERLOCK_LAYER.md`](INTERLOCK_LAYER.md).
+For the full concept layer, see [`INTERLOCK_LAYER.md`](INTERLOCK_LAYER.md).  
+Chinese version: [`WHY_TASK_STATE_CAPSULE.zh.md`](WHY_TASK_STATE_CAPSULE.zh.md).

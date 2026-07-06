@@ -2,14 +2,14 @@
 
 Generated At: 2026-07-06
 Task / Project Name: ai-task-state-capsule
-Version Hash: v20260706-1400-hand
-Previous Version Hash: v20260706-1200-caps
+Version Hash: v20260706-1600-flow
+Previous Version Hash: v20260706-1400-hand
 Current Branch: main
-Current Stage: Pilot — first cross-AI handoff verified
+Current Stage: Pilot — workflow hardening (test protocol + verifier)
 
 ## 1. Overall Progress
-- Completion: ~80% toward “usable personal workflow” (format + docs + GitHub + one successful handoff)
-- Current Stage: Second capsule checkpoint (milestone roll-forward)
+- Completion: ~85% toward “usable personal workflow”
+- Current Stage: Third capsule checkpoint; process tooling added
 
 ## 2. Status Classification
 ### Done
@@ -18,53 +18,56 @@ Current Stage: Pilot — first cross-AI handoff verified
 - Motivation essays EN + ZH
 - Git + capsule alignment guide EN + ZH
 - Packaging scripts + external audit seal verified (last run v0.1.4 patch)
-- Cross-AI handoff trial succeeded (external AI, 2026-07-06) — loaded capsule, correct hash/branch, Priority Action 1, no scope creep
+- Cross-AI handoff T1 PASS × 1 (external AI, 2026-07-06)
+- Handoff test protocol EN + ZH (`docs/HANDOFF_TEST_PROTOCOL.md`)
+- `scripts/verify_capsule.py` — hash consistency + optional git tag check
+- Resume template: first-response contract + git tag confirmation step
 
 ### In Progress
-- Pilot: maintain task state in `.capsule/` instead of chat-only
-- Learn minimum cadence (milestone-only updates)
-- Await 1–2 more handoffs before copying pattern to another repo
+- Pilot Exp-pilot-01: T1 × 2–3 total, T2 rollback × 1, T3 rolls ongoing
+- Next handoff tests per HANDOFF_TEST_PROTOCOL
 
 ### Todo
-- Tag `v0.1.5` only if/when next **release** patch (e.g. JSON Schema) — not required for pilot
-- Optional: JSON Schema for `STATE_MANIFEST.json`
-- Optional: capsule diff CLI
-- Use pilot learnings before copying `.capsule/` to any other repo
+- Run T2 rollback drill (`capsule/v20260706-1400-hand` or earlier)
+- Second T1 in another AI tool (tool-neutrality)
+- Tag `v0.1.5` only if explicit release patch — not for pilot milestones
+- Optional: JSON Schema, capsule diff CLI (post-pilot)
 
 ### Blockers / Risks
-- None hard. Risk: over-documenting without using — mitigated by this pilot.
-- Do not treat pilot capsule as second release track (capsule hash ≠ semver tag).
+- None hard. Risk: docs without tests — mitigated by HANDOFF_TEST_PROTOCOL.
 
 ### Key Insights & Learnings
-- Capsule rollback resets AI narrative; Git rollback resets files — both needed.
-- One repo trial beats “全府標準化” upfront.
+- First-response contract reduces handoff variance across AI tools.
+- `verify_capsule.py` catches hash drift before handing off.
 
 ### Experiments / Tests
-- **Exp-pilot-01:** `.capsule/` handoff — **1/3 PASS** (2026-07-06, external AI). Remaining: 1–2 more clean resumes.
+- **Exp-pilot-01:** T1 **1/3 PASS** (external AI, 2026-07-06)
+- **Exp-pilot-02:** `verify_capsule.py` — run each T3 milestone
+- **Exp-pilot-03:** T2 rollback — not run yet
 
 ## 3. Key Information Snapshot
 ### Major Decisions
-- See `DECISION_LOG.md` — pilot scope, git tag alignment, format-over-product.
+- See `DECISION_LOG.md`
 
 ### Important Settings / Parameters / Resources
 - Repo: https://github.com/infinitus01/ai-task-state-capsule
-- Local path: `C:\Users\Ming\ai-task-state-capsule`
-- Capsule path: `.capsule/`
-- Templates source: `templates/` (for other projects later)
+- Capsule: `.capsule/`
+- Test protocol: `docs/HANDOFF_TEST_PROTOCOL.md`
+- Verify: `python scripts/verify_capsule.py --check-git-tag`
 
 ### Rejected or Paused Options
-- Org-wide mandatory capsule (paused until pilot succeeds)
-- Heavy promotion (paused)
+- Org-wide mandatory capsule (paused until pilot exit criteria)
+- v0.1.5 for pilot-only changes (paused)
 
 ## 4. Next Actions
 ### Priority Action 1
-After the next meaningful doc or script change: update this folder, commit with `(capsule v20260706-xxxx)`, tag `capsule/<hash>`.
+Run T2 rollback drill per HANDOFF_TEST_PROTOCOL; record PASS/FAIL in Experiments.
 
 ### Priority Action 2
-Optional: retry handoff from this checkpoint (`v20260706-1400-hand`) in a third AI tool to confirm tool-neutrality.
+Second T1 cold handoff using hash `v20260706-1600-flow` in a different AI tool.
 
 ## 5. Compressed Summary
-The ai-task-state-capsule repo remains at release v0.1.4 on GitHub. The pilot `.capsule/` folder now has two checkpoints: bootstrap (`v20260706-1200-caps`) and post-handoff (`v20260706-1400-hand`). An external AI successfully resumed from the capsule without chat history—correct version, branch, priorities, and no unauthorized scope expansion. Scope stays this repo only; v0.1.5 and JSON Schema remain optional and not started. Next milestone is either another cross-session handoff test or the next meaningful doc/script change, each followed by capsule update plus `capsule/<hash>` Git tag.
+Pilot checkpoint three adds operational tooling: a bilingual handoff test protocol (T1 cold handoff, T2 rollback, T3 milestone roll), a verify_capsule.py script for hash and git-tag consistency, and an updated resume template with a mandatory first-response contract. One T1 handoff already passed. The repo remains at release v0.1.4; capsule hashes are independent of semver. Next work is procedural testing—rollback drill and additional cold handoffs—not feature expansion. Pilot exits after 2–3 T1 passes, one T2 pass, and a hash chain depth of three or more with verifier PASS on each roll.
 
 ## 6. Resume Instruction
-Resume this task from version v20260706-1400-hand.
+Resume this task from version v20260706-1600-flow.

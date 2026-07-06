@@ -91,6 +91,7 @@ Resume in a new AI session:
 python scripts/patch_release.py          # source + capsule + audit ZIPs
 python scripts/generate_capsule_zip.py --source examples/example-twse-research
 python scripts/verify_zips.py
+python scripts/verify_capsule.py --check-git-tag   # capsule hash + tag consistency
 ```
 
 Audit archives use **external sealing** (final SHA not stored inside the audit ZIP):
@@ -153,6 +154,7 @@ MIT — see [`LICENSE`](LICENSE).
 - [`docs/VERSION_HASH_RULES.md`](docs/VERSION_HASH_RULES.md)
 - [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md)
 - [`docs/GIT_CAPSULE_ALIGNMENT.md`](docs/GIT_CAPSULE_ALIGNMENT.md) · [`docs/GIT_CAPSULE_ALIGNMENT.zh.md`](docs/GIT_CAPSULE_ALIGNMENT.zh.md) — Git + capsule dual rollback
+- [`docs/HANDOFF_TEST_PROTOCOL.md`](docs/HANDOFF_TEST_PROTOCOL.md) · [`docs/HANDOFF_TEST_PROTOCOL.zh.md`](docs/HANDOFF_TEST_PROTOCOL.zh.md) — repeatable handoff tests
 - [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md)
 - [`docs/CUSTOMIZATION_GUIDE.md`](docs/CUSTOMIZATION_GUIDE.md)
 - [`RELEASE.md`](RELEASE.md)

@@ -22,6 +22,16 @@
 - **Consequences:** Recovery uses `git checkout capsule/v20260706-1200-caps` plus restored capsule files.
 - **Links:** commit at pilot bootstrap
 
+### DEC-20260706-004: Formalize handoff tests before second repo
+- **Date:** 2026-07-06
+- **Status:** accepted
+- **Context:** One T1 pass; need repeatable process.
+- **Decision:** Add HANDOFF_TEST_PROTOCOL + verify_capsule.py; first-response contract in resume template.
+- **Rationale:** Reduce variance; catch hash drift before handoff.
+- **Alternatives considered:** Ad-hoc testing only (rejected).
+- **Consequences:** Pilot exit criteria now explicit in protocol doc.
+- **Links:** `docs/HANDOFF_TEST_PROTOCOL.md`, `scripts/verify_capsule.py`
+
 ### DEC-20260706-003: Cross-AI handoff trial passed
 - **Date:** 2026-07-06
 - **Status:** accepted

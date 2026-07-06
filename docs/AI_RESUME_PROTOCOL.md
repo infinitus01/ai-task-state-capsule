@@ -6,7 +6,11 @@ Standard procedure for handing a long task to a new AI session.
 
 - Capsule files are up to date (especially `TASK_STATUS_REPORT.md`)
 - `version_hash` is consistent across report, manifest, and resume block
+- Local check: `python scripts/verify_capsule.py --capsule-dir <path>`
+- With Git: `python scripts/verify_capsule.py --check-git-tag`
 - Optional: sealed ZIP for integrity reference
+
+Pilot test script: [`HANDOFF_TEST_PROTOCOL.md`](HANDOFF_TEST_PROTOCOL.md) · [中文](HANDOFF_TEST_PROTOCOL.zh.md)
 
 ## Steps
 

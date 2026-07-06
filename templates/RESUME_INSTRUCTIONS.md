@@ -18,8 +18,15 @@ Instructions:
 1. Read TASK_STATUS_REPORT.md — especially sections 2 (status), 4 (next actions), and 5 (compressed summary).
 2. Read DECISION_LOG.md for accepted decisions; do not reverse them without explicit user approval.
 3. Read BRANCH_INFO.md to understand the current branch and any active experiments.
-4. Confirm RECOVERY_CHECK.md items if the previous session ended abruptly or drifted.
-5. Continue from "Next Actions" in TASK_STATUS_REPORT.md unless the user redirects.
+4. Confirm Git tag exists when applicable: git tag -l capsule/[VERSION_HASH]
+5. Confirm RECOVERY_CHECK.md items if the previous session ended abruptly or drifted.
+6. Continue from "Next Actions" in TASK_STATUS_REPORT.md unless the user redirects.
+
+First response MUST:
+- State version hash and branch explicitly
+- Summarize current stage in 3–5 sentences
+- Cite Priority Action 1 verbatim
+- Ask what the user wants next (do not start large work unprompted)
 
 Constraints:
 - Do not redo completed work listed under Done unless asked.

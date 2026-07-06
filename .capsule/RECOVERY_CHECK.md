@@ -11,7 +11,8 @@ Pilot instance — same rules as `templates/RECOVERY_CHECK.md`, paths relative t
 
 ## Fix
 
-1. `git checkout capsule/v20260706-1400-hand` (or latest `capsule/*` tag)
+1. `python scripts/verify_capsule.py --check-git-tag` — fix FAIL before handoff
+2. `git checkout capsule/v20260706-1600-flow` (or target `capsule/*` tag)
 2. Restore `.capsule/` from that commit if needed
 3. New session → paste `RESUME_INSTRUCTIONS.md` only
 

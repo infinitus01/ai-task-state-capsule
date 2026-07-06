@@ -109,7 +109,7 @@ Format: `vYYYYMMDD-HHMM-xxxx` — see [`docs/VERSION_HASH_RULES.md`](docs/VERSIO
 
 Lightweight branch names: `main`, `experiment/<name>`, `rollback/<hash>`, `review/<name>`.
 
-See [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md) and [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md).
+See [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md), [`docs/GIT_CAPSULE_ALIGNMENT.md`](docs/GIT_CAPSULE_ALIGNMENT.md) · [中文](docs/GIT_CAPSULE_ALIGNMENT.zh.md), and [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md).
 
 ## Suggested GitHub repo metadata
 
@@ -152,6 +152,7 @@ MIT — see [`LICENSE`](LICENSE).
 - [`docs/INTERLOCK_LAYER.md`](docs/INTERLOCK_LAYER.md)
 - [`docs/VERSION_HASH_RULES.md`](docs/VERSION_HASH_RULES.md)
 - [`docs/BRANCH_AND_ROLLBACK.md`](docs/BRANCH_AND_ROLLBACK.md)
+- [`docs/GIT_CAPSULE_ALIGNMENT.md`](docs/GIT_CAPSULE_ALIGNMENT.md) · [`docs/GIT_CAPSULE_ALIGNMENT.zh.md`](docs/GIT_CAPSULE_ALIGNMENT.zh.md) — Git + capsule dual rollback
 - [`docs/AI_RESUME_PROTOCOL.md`](docs/AI_RESUME_PROTOCOL.md)
 - [`docs/CUSTOMIZATION_GUIDE.md`](docs/CUSTOMIZATION_GUIDE.md)
 - [`RELEASE.md`](RELEASE.md)

@@ -12,7 +12,9 @@ Use this checklist when the AI has drifted, mixed tasks, failed a branch, or los
 
 - [ ] Does `Version Hash` in the report match `version_hash` in `STATE_MANIFEST.json`?
 - [ ] Is `previous_version_hash` consistent with your last known good ZIP or Git commit?
-- [ ] **Fix:** Restore from last `rollback/<hash>` or versioned ZIP; re-run recovery.
+- [ ] Does Git HEAD match the capsule hash (tag `capsule/<version-hash>` or linked commit)?
+- [ ] Do files listed under **Done** exist at current `git` HEAD?
+- [ ] **Fix:** Restore **both** Git and capsule from last `rollback/<hash>` — see `docs/GIT_CAPSULE_ALIGNMENT.md`.
 
 ## 3. Branch Confusion
 

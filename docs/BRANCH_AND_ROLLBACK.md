@@ -1,5 +1,7 @@
 # Branch and Rollback
 
+For Git + capsule alignment (tags, commits, dual rollback): [`GIT_CAPSULE_ALIGNMENT.md`](GIT_CAPSULE_ALIGNMENT.md) · [中文](GIT_CAPSULE_ALIGNMENT.zh.md)
+
 ## Mental Model
 
 A capsule branch is a **named snapshot lineage**, not necessarily a Git branch. You may mirror names in Git for convenience.

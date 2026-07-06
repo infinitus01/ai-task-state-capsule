@@ -22,6 +22,16 @@
 - **Consequences:** Recovery uses `git checkout capsule/v20260706-1200-caps` plus restored capsule files.
 - **Links:** commit at pilot bootstrap
 
+### DEC-20260706-003: Cross-AI handoff trial passed
+- **Date:** 2026-07-06
+- **Status:** accepted
+- **Context:** User handed RESUME_INSTRUCTIONS + capsule files to another AI.
+- **Decision:** Record success; roll capsule forward to `v20260706-1400-hand`.
+- **Rationale:** Confirms format works for session handoff without chat history.
+- **Alternatives considered:** Skip recording (rejected — loses pilot evidence).
+- **Consequences:** Exp-pilot-01 at 1/3; still need 1–2 more handoffs before second repo.
+- **Links:** `capsule/v20260706-1400-hand`
+
 ### DEC-20260705-001: File format over product (unchanged)
 - **Date:** 2026-07-05
 - **Status:** accepted

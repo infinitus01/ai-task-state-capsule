@@ -15,6 +15,7 @@
 
 ## Git alignment
 
-- Capsule hash: `v20260706-1200-caps`
-- Git tag (after commit): `capsule/v20260706-1200-caps`
+- Capsule hash: `v20260706-1400-hand`
+- Previous hash: `v20260706-1200-caps`
+- Git tag: `capsule/v20260706-1400-hand`
 - Repo: https://github.com/infinitus01/ai-task-state-capsule

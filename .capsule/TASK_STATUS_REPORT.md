@@ -2,14 +2,14 @@
 
 Generated At: 2026-07-06
 Task / Project Name: ai-task-state-capsule
-Version Hash: v20260706-1200-caps
-Previous Version Hash: null
+Version Hash: v20260706-1400-hand
+Previous Version Hash: v20260706-1200-caps
 Current Branch: main
-Current Stage: Pilot — dogfood `.capsule/` on this repo
+Current Stage: Pilot — first cross-AI handoff verified
 
 ## 1. Overall Progress
-- Completion: ~75% toward “usable personal workflow” (format + docs + GitHub + alignment guide done; pilot just started)
-- Current Stage: First real `.capsule/` checkpoint
+- Completion: ~80% toward “usable personal workflow” (format + docs + GitHub + one successful handoff)
+- Current Stage: Second capsule checkpoint (milestone roll-forward)
 
 ## 2. Status Classification
 ### Done
@@ -18,10 +18,12 @@ Current Stage: Pilot — dogfood `.capsule/` on this repo
 - Motivation essays EN + ZH
 - Git + capsule alignment guide EN + ZH
 - Packaging scripts + external audit seal verified (last run v0.1.4 patch)
+- Cross-AI handoff trial succeeded (external AI, 2026-07-06) — loaded capsule, correct hash/branch, Priority Action 1, no scope creep
 
 ### In Progress
 - Pilot: maintain task state in `.capsule/` instead of chat-only
 - Learn minimum cadence (milestone-only updates)
+- Await 1–2 more handoffs before copying pattern to another repo
 
 ### Todo
 - Tag `v0.1.5` only if/when next **release** patch (e.g. JSON Schema) — not required for pilot
@@ -38,7 +40,7 @@ Current Stage: Pilot — dogfood `.capsule/` on this repo
 - One repo trial beats “全府標準化” upfront.
 
 ### Experiments / Tests
-- **Exp-pilot-01:** This `.capsule/` folder — evaluate after 2–3 real session handoffs.
+- **Exp-pilot-01:** `.capsule/` handoff — **1/3 PASS** (2026-07-06, external AI). Remaining: 1–2 more clean resumes.
 
 ## 3. Key Information Snapshot
 ### Major Decisions
@@ -59,10 +61,10 @@ Current Stage: Pilot — dogfood `.capsule/` on this repo
 After the next meaningful doc or script change: update this folder, commit with `(capsule v20260706-xxxx)`, tag `capsule/<hash>`.
 
 ### Priority Action 2
-Next new AI session on this repo: paste `RESUME_INSTRUCTIONS.md` instead of re-explaining history.
+Optional: retry handoff from this checkpoint (`v20260706-1400-hand`) in a third AI tool to confirm tool-neutrality.
 
 ## 5. Compressed Summary
-The ai-task-state-capsule project is on GitHub at v0.1.4 with alignment and motivation docs complete. The user is starting a single-repo pilot: a live `.capsule/` directory tracks task state for maintaining this repository only, paired with Git tags `capsule/<version_hash>`. No other projects require capsules yet. The immediate goal is to practice milestone updates and session handoff with RESUME_INSTRUCTIONS, not to ship v0.1.5 or expand scope. Success means two or three clean cross-session resumes without re-deriving context from chat.
+The ai-task-state-capsule repo remains at release v0.1.4 on GitHub. The pilot `.capsule/` folder now has two checkpoints: bootstrap (`v20260706-1200-caps`) and post-handoff (`v20260706-1400-hand`). An external AI successfully resumed from the capsule without chat history—correct version, branch, priorities, and no unauthorized scope expansion. Scope stays this repo only; v0.1.5 and JSON Schema remain optional and not started. Next milestone is either another cross-session handoff test or the next meaningful doc/script change, each followed by capsule update plus `capsule/<hash>` Git tag.
 
 ## 6. Resume Instruction
-Resume this task from version v20260706-1200-caps.
+Resume this task from version v20260706-1400-hand.

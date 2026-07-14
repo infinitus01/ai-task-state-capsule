@@ -1,144 +1,96 @@
 #!/usr/bin/env python3
-"""
-Generate a versioned ZIP capsule from templates/ or a custom source directory.
-
-Usage:
-    python scripts/generate_capsule_zip.py --source templates
-    python scripts/generate_capsule_zip.py --source examples/example-coding-task
-    python scripts/generate_capsule_zip.py --source templates --output-dir dist
-"""
-
+"""Generate a sealed, versioned Task State Capsule ZIP."""
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import os
-import secrets
+import shutil
 import sys
+import tempfile
 import zipfile
-from datetime import datetime, timezone
 from pathlib import Path
 
+from pack_common import (
+    capsule_content_sha256_from_directory,
+    is_valid_version_hash,
+    project_root,
+    sha256_file,
+    write_capsule_external_seal,
+)
 
-def project_root() -> Path:
-    return Path(__file__).resolve().parent.parent
-
-
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(65536), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def make_version_hash(zip_sha256: str, ts: datetime | None = None) -> str:
-    when = ts or datetime.now(timezone.utc)
-    stamp = when.strftime("%Y%m%d-%H%M")
-    suffix = zip_sha256[:4].lower() if zip_sha256 else secrets.token_hex(2)
-    return f"v{stamp}-{suffix}"
+REQUIRED = {
+    "TASK_STATUS_REPORT.md",
+    "DECISION_LOG.md",
+    "BRANCH_INFO.md",
+    "RESUME_INSTRUCTIONS.md",
+    "RECOVERY_CHECK.md",
+    "STATE_MANIFEST.json",
+}
 
 
-def collect_files(source_dir: Path) -> list[Path]:
-    files: list[Path] = []
-    for root, _dirs, filenames in os.walk(source_dir):
-        for name in sorted(filenames):
-            files.append(Path(root) / name)
-    return files
-
-
-def build_zip(source_dir: Path, zip_path: Path) -> list[str]:
-    included: list[str] = []
-    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-        for file_path in collect_files(source_dir):
-            arcname = file_path.relative_to(source_dir).as_posix()
-            zf.write(file_path, arcname)
-            included.append(arcname)
-    return included
-
-
-def rename_with_hash(zip_path: Path, version_hash: str, prefix: str) -> Path:
-    final_name = f"{prefix}-{version_hash}.zip"
-    final_path = zip_path.parent / final_name
-    if zip_path != final_path:
-        if final_path.exists():
-            final_path.unlink()
-        zip_path.rename(final_path)
-    return final_path
-
-
-def generate(
-    source: Path,
-    output_dir: Path,
-    prefix: str = "ai-task-state-capsule",
-) -> dict:
+def build(source: Path, output_dir: Path, prefix: str) -> dict:
     if not source.is_dir():
-        raise FileNotFoundError(f"Source directory not found: {source}")
+        raise FileNotFoundError(source)
+    manifest_path = source / "STATE_MANIFEST.json"
+    if not manifest_path.is_file():
+        raise ValueError("STATE_MANIFEST.json missing")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    version = str(manifest.get("version_hash", "")).strip()
+    if not is_valid_version_hash(version):
+        raise ValueError("manifest version_hash is missing or invalid")
+    missing = sorted(name for name in REQUIRED if not (source / name).is_file())
+    if missing:
+        raise ValueError(f"missing required files: {', '.join(missing)}")
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now(timezone.utc)
+    with tempfile.TemporaryDirectory() as tmp:
+        staging = Path(tmp) / "capsule"
+        shutil.copytree(source, staging)
+        content_sha = capsule_content_sha256_from_directory(staging)
+        staged_manifest_path = staging / "STATE_MANIFEST.json"
+        staged_manifest = json.loads(staged_manifest_path.read_text(encoding="utf-8"))
+        staged_manifest["capsule_content_sha256"] = content_sha
+        staged_manifest_path.write_text(json.dumps(staged_manifest, indent=2) + "\n", encoding="utf-8")
 
-    temp_name = output_dir / f"{prefix}-building.zip"
-    if temp_name.exists():
-        temp_name.unlink()
+        zip_path = output_dir / f"{prefix}-{version}.zip"
+        if zip_path.exists():
+            zip_path.unlink()
+        with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+            for path in sorted(staging.rglob("*")):
+                if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc":
+                    zf.write(path, path.relative_to(staging).as_posix())
 
-    included = build_zip(source, temp_name)
-    digest = sha256_file(temp_name)
-    version_hash = make_version_hash(digest, ts)
-
-    final_path = rename_with_hash(temp_name, version_hash, prefix)
-
+    seal = write_capsule_external_seal(
+        zip_path,
+        state_version_hash=version,
+        capsule_content_sha256=content_sha,
+    )
     return {
-        "zip_path": final_path,
-        "version_hash": version_hash,
-        "sha256": digest,
-        "included_files": included,
+        "zip_path": zip_path,
+        "version_hash": version,
+        "capsule_content_sha256": content_sha,
+        "archive_sha256": sha256_file(zip_path),
+        "seal": seal,
     }
 
 
-def print_result(result: dict) -> None:
-    print("Capsule ZIP:")
-    print(result["zip_path"])
-    print("Version Hash:")
-    print(result["version_hash"])
-    print("SHA-256:")
-    print(result["sha256"])
-    print("Included Files:")
-    for name in result["included_files"]:
-        print(f"  - {name}")
-
-
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate AI Task State Capsule ZIP")
-    parser.add_argument(
-        "--source",
-        default="templates",
-        help="Source directory relative to project root (default: templates)",
-    )
-    parser.add_argument(
-        "--output-dir",
-        default="dist",
-        help="Output directory relative to project root (default: dist)",
-    )
-    parser.add_argument(
-        "--prefix",
-        default="ai-task-state-capsule",
-        help="ZIP filename prefix (default: ai-task-state-capsule)",
-    )
+    parser = argparse.ArgumentParser(description="Generate sealed AI Task State Capsule ZIP")
+    parser.add_argument("--source", default="examples/example-coding-task")
+    parser.add_argument("--output-dir", default="dist")
+    parser.add_argument("--prefix", default="ai-task-state-capsule")
     args = parser.parse_args(argv)
-
     root = project_root()
-    source = (root / args.source).resolve()
-    output_dir = (root / args.output_dir).resolve()
-
     try:
-        result = generate(source, output_dir, prefix=args.prefix)
-    except FileNotFoundError as exc:
-        print(exc, file=sys.stderr)
+        result = build((root / args.source).resolve(), (root / args.output_dir).resolve(), args.prefix)
+    except (FileNotFoundError, ValueError, json.JSONDecodeError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
         return 1
-
-    print_result(result)
+    print(f"Capsule ZIP: {result['zip_path']}")
+    print(f"State Version: {result['version_hash']}")
+    print(f"Capsule Content SHA-256: {result['capsule_content_sha256']}")
+    print(f"Archive SHA-256: {result['archive_sha256']}")
+    print(f"External Seal: {result['seal']['sealed_path']}")
     return 0
 
 

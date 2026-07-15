@@ -46,6 +46,16 @@ def main() -> int:
     print(f"Release: {RELEASE}")
     run_step("Source ZIP", [py, "scripts/generate_source_zip.py"])
     run_step(
+        "Capsule handoff readiness",
+        [
+            py,
+            "scripts/verify_capsule.py",
+            "--capsule-dir",
+            "examples/example-coding-task",
+            "--ready-for-handoff",
+        ],
+    )
+    run_step(
         "Capsule ZIP",
         [py, "scripts/generate_capsule_zip.py", "--source", "examples/example-coding-task"],
     )

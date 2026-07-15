@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/infinitus01/ai-task-state-capsule/schemas/STATE_MANIFEST.schema.json",
+  "title": "AI Task State Capsule Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project_name",
+    "capsule_type",
+    "version_hash",
+    "previous_version_hash",
+    "branch",
+    "created_at",
+    "created_by",
+    "status",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {"type": "string", "minLength": 1},
+    "project_name": {"type": "string", "minLength": 1},
+    "capsule_type": {"const": "ai_task_state_capsule"},
+    "version_hash": {
+      "type": "string",
+      "pattern": "^v[0-9]{8}-[0-9]{4}-[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "previous_version_hash": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^v[0-9]{8}-[0-9]{4}-[A-Za-z0-9][A-Za-z0-9._-]*$"}
+      ]
+    },
+    "branch": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "created_by": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "capsule_content_sha256": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      ]
+    },
+    "files": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "allOf": [
+        {"contains": {"const": "TASK_STATUS_REPORT.md"}},
+        {"contains": {"const": "DECISION_LOG.md"}},
+        {"contains": {"const": "BRANCH_INFO.md"}},
+        {"contains": {"const": "RESUME_INSTRUCTIONS.md"}},
+        {"contains": {"const": "RECOVERY_CHECK.md"}},
+        {"contains": {"const": "STATE_MANIFEST.json"}}
+      ]
+    },
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}

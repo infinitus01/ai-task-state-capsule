@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""
-Run the release pipeline.
-
-Usage:
-    python scripts/patch_release.py
-"""
-
+"""Run the release pipeline."""
 from __future__ import annotations
 
 import subprocess
@@ -49,12 +43,22 @@ def main() -> int:
     root = project_root()
     py = sys.executable
     dist = root / "dist"
-
     print(f"Release: {RELEASE}")
-
     run_step("Source ZIP", [py, "scripts/generate_source_zip.py"])
-    run_step("Capsule ZIP", [py, "scripts/generate_capsule_zip.py", "--source", "templates"])
-
+    run_step(
+        "Capsule handoff readiness",
+        [
+            py,
+            "scripts/verify_capsule.py",
+            "--capsule-dir",
+            "examples/example-coding-task",
+            "--ready-for-handoff",
+        ],
+    )
+    run_step(
+        "Capsule ZIP",
+        [py, "scripts/generate_capsule_zip.py", "--source", "examples/example-coding-task"],
+    )
     capsule_zips = sorted(
         dist.glob("ai-task-state-capsule-v*.zip"),
         key=lambda p: p.stat().st_mtime,
@@ -63,16 +67,13 @@ def main() -> int:
     if not capsule_zips:
         print("No capsule ZIP found", file=sys.stderr)
         return 1
-
     run_step(
         "Audit ZIP + external seal",
         [py, "scripts/generate_audit_zip.py", "--capsule-zip", str(capsule_zips[0])],
     )
-
     prune_old_builds(dist)
     print("\n==> Final verification")
-    result = subprocess.run([py, "scripts/verify_zips.py"], cwd=project_root())
-    return result.returncode
+    return subprocess.run([py, "scripts/verify_zips.py"], cwd=root).returncode
 
 
 if __name__ == "__main__":

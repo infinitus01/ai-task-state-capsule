@@ -2,7 +2,26 @@
 
 A lightweight, local-first **task state capsule format** for long-running AI workflows.
 
-> **Status:** early release (v0.1.4). File format + templates + packaging scripts — not a hosted product, IDE plugin, or auto-sync service.
+> **Status:** early release (v0.2.0). File format + CLI + templates + packaging/verification scripts — not a hosted product, IDE plugin, or auto-sync service.
+
+## 30-second Quick Start
+
+Requires Python 3.10+.
+
+```bash
+pip install git+https://github.com/infinitus01/ai-task-state-capsule.git
+task-capsule init my-project
+task-capsule verify my-project
+```
+
+Expected verification result:
+
+```text
+PASS
+Capsule verified: my-project
+```
+
+Then edit `my-project/TASK_STATUS_REPORT.md` and `my-project/DECISION_LOG.md` as the task evolves. The CLI creates the six-file capsule, assigns a state version, and fails closed if required files or manifest identity fields are missing or malformed.
 
 **Why this exists (short essay):** [English](docs/WHY_TASK_STATE_CAPSULE.md) · [中文](docs/WHY_TASK_STATE_CAPSULE.zh.md)
 
@@ -39,7 +58,7 @@ Do not mistake this project for:
 | Chat exporter | Intentionally **not** a raw chat dump |
 | Clipboard watcher | No background capture |
 | Cloud sync platform | Local-first; ZIP/Git optional |
-| VS Code / Chrome extension | File format only |
+| VS Code / Chrome extension | File format + CLI only |
 | Trading system / strategy platform | Can document research state; does not execute trades |
 | Replacement for Git, issues, or design docs | Complements them for **session handoff** |
 
@@ -77,13 +96,15 @@ baseline not accepted → do not enable simulation
 next step = dry-run export / audit only
 ```
 
-## Quick start
+## CLI
 
 ```bash
-cp -r templates/ my-task-capsule/
-# edit TASK_STATUS_REPORT.md + STATE_MANIFEST.json as you work
-git add my-task-capsule/
+task-capsule init my-project
+task-capsule verify my-project
+task-capsule --version
 ```
+
+`init` refuses to overwrite a non-empty target directory. `verify` checks the six required files and the manifest's core identity fields; it does **not** claim that repository state, external effects, or scientific conclusions are true.
 
 Resume in a new AI session:
 
@@ -135,16 +156,16 @@ Local-first file format for versioning, handoff, and recovery of long-running AI
 
 | Area | Status |
 |------|--------|
-| File format | usable v0.1 |
+| File format | usable v0.2 |
+| CLI init / verify | yes |
 | Templates + examples | yes |
 | Packaging / verification scripts | yes |
-| JSON Schema validation | not yet |
+| JSON Schema | yes |
 | Editor integrations | not planned as core |
 | Community adoption | early / personal-scale |
 
 ## Future extensions
 
-- JSON Schema for `STATE_MANIFEST.json`
 - Capsule diff CLI
 - Optional encryption for sensitive metadata
 - Optional export adapters (never required for core use)

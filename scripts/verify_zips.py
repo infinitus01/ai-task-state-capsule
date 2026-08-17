@@ -22,10 +22,12 @@ from pathlib import Path
 from pack_common import (
     INZIP_VERIFICATION_REPORT,
     RELEASE,
+    capsule_content_sha256_from_zip,
     external_seal_paths,
     hash_from_filename,
     normalize_text,
     project_root,
+    read_capsule_manifest_from_zip,
     sha256_file,
     suffix_from_version_hash,
 )
@@ -180,6 +182,96 @@ def check_external_seal(zip_path: Path, actual_sha: str, filename_hash: str | No
     }
 
 
+def check_capsule_manifest_and_content(
+    zf: zipfile.ZipFile, filename_version_hash: str | None
+) -> dict:
+    try:
+        manifest = read_capsule_manifest_from_zip(zf)
+        recomputed_content_sha = capsule_content_sha256_from_zip(zf)
+    except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        return {
+            "integrity": "FAIL",
+            "detail": f"Unable to read capsule manifest/content: {exc}",
+            "state_version_hash": None,
+            "capsule_content_sha256": None,
+        }
+
+    state_version_hash = manifest.get("version_hash")
+    declared_content_sha = manifest.get("capsule_content_sha256")
+    checks = []
+    if not isinstance(state_version_hash, str) or not state_version_hash:
+        checks.append("STATE_MANIFEST.json version_hash missing")
+    elif filename_version_hash != state_version_hash:
+        checks.append("filename state version does not match STATE_MANIFEST.json")
+    if not isinstance(declared_content_sha, str) or not declared_content_sha:
+        checks.append("STATE_MANIFEST.json capsule_content_sha256 missing")
+    elif declared_content_sha != recomputed_content_sha:
+        checks.append("recomputed capsule content SHA-256 does not match STATE_MANIFEST.json")
+
+    if checks:
+        return {
+            "integrity": "FAIL",
+            "detail": "; ".join(checks),
+            "state_version_hash": state_version_hash,
+            "capsule_content_sha256": declared_content_sha,
+        }
+
+    return {
+        "integrity": "PASS",
+        "detail": "Filename state version and recomputed capsule content SHA-256 match STATE_MANIFEST.json",
+        "state_version_hash": state_version_hash,
+        "capsule_content_sha256": declared_content_sha,
+    }
+
+
+def check_capsule_external_seal(
+    zip_path: Path,
+    actual_sha: str,
+    filename_version_hash: str | None,
+    manifest_content_sha: object,
+) -> dict:
+    sha_path, sealed_path = external_seal_paths(zip_path)
+    missing = [path.name for path in (sha_path, sealed_path) if not path.exists()]
+    if missing:
+        return {
+            "integrity": "FAIL",
+            "detail": f"Missing capsule external seal files: {', '.join(missing)}",
+        }
+
+    sha_parts = sha_path.read_text(encoding="utf-8").strip().split()
+    try:
+        sealed = json.loads(sealed_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        return {"integrity": "FAIL", "detail": f"Invalid capsule .sealed.json: {exc}"}
+
+    checks = []
+    if len(sha_parts) != 2:
+        checks.append(".sha256 must record exactly archive SHA-256 and archive filename")
+    else:
+        if sha_parts[0] != actual_sha:
+            checks.append(".sha256 does not match archive SHA-256")
+        if sha_parts[1] != zip_path.name:
+            checks.append(".sha256 archive filename mismatch")
+    if sealed.get("archive_sha256") != actual_sha:
+        checks.append(".sealed.json archive_sha256 mismatch")
+    if sealed.get("archive") != zip_path.name:
+        checks.append(".sealed.json archive name mismatch")
+    if sealed.get("state_version_hash") != filename_version_hash:
+        checks.append(".sealed.json state_version_hash mismatch")
+    if sealed.get("capsule_content_sha256") != manifest_content_sha:
+        checks.append(".sealed.json capsule_content_sha256 mismatch")
+    if sealed.get("seal_type") != "external_capsule_archive_record":
+        checks.append("seal_type must be external_capsule_archive_record")
+
+    if checks:
+        return {"integrity": "FAIL", "detail": "; ".join(checks)}
+    return {
+        "integrity": "PASS",
+        "detail": "External capsule .sha256 and .sealed.json match archive, state version, and content hash",
+        "sealed_record": sealed,
+    }
+
+
 def verify_zip(path: Path) -> dict:
     kind = classify_zip(path)
     actual_sha = sha256_file(path)
@@ -205,14 +297,28 @@ def verify_zip(path: Path) -> dict:
         version_record = None
         inzip_report = None
         external_seal = None
+        capsule_manifest = None
+        capsule_external_seal = None
         if kind == "audit":
             version_record = check_version_record_in_zip(zf)
             inzip_report = check_inzip_verification_report(zf, actual_sha)
             external_seal = check_external_seal(path, actual_sha, filename_hash)
+        elif kind == "capsule":
+            capsule_manifest = check_capsule_manifest_and_content(zf, filename_hash)
+            capsule_external_seal = check_capsule_external_seal(
+                path,
+                actual_sha,
+                filename_hash,
+                capsule_manifest.get("capsule_content_sha256"),
+            )
 
     overall = "PASS" if contents_ok else "FAIL"
     if kind == "audit":
         for check in (version_record, inzip_report, external_seal):
+            if check and check["integrity"] == "FAIL":
+                overall = "FAIL"
+    elif kind == "capsule":
+        for check in (capsule_manifest, capsule_external_seal):
             if check and check["integrity"] == "FAIL":
                 overall = "FAIL"
 
@@ -229,6 +335,8 @@ def verify_zip(path: Path) -> dict:
         "version_record": version_record,
         "inzip_report": inzip_report,
         "external_seal": external_seal,
+        "capsule_manifest": capsule_manifest,
+        "capsule_external_seal": capsule_external_seal,
         "overall": overall,
     }
 
@@ -242,8 +350,8 @@ def render_report(results: list[dict], generated_at: str) -> str:
         "",
         "Rule: **Do not mark PASS unless the ZIP contents themselves prove the required files exist.**",
         "",
-        "Note: Audit ZIP final archive hash is **not** recorded inside the audit ZIP. "
-        "See adjacent `.sha256` and `.sealed.json` beside the audit archive in `dist/`.",
+        "Note: Audit and capsule final archive hashes are **not** recorded inside their ZIPs. "
+        "See adjacent `.sha256` and `.sealed.json` files in `dist/`.",
         "",
     ]
 
@@ -298,7 +406,31 @@ def render_report(results: list[dict], generated_at: str) -> str:
                         "```",
                     ]
                 )
-        elif item["kind"] in {"capsule", "source"}:
+        elif item["kind"] == "capsule":
+            for label, check in (
+                ("Capsule Manifest and Content", item["capsule_manifest"]),
+                ("Capsule External Seal", item["capsule_external_seal"]),
+            ):
+                if check:
+                    lines.extend(
+                        [
+                            "",
+                            f"#### {label}",
+                            f"- **Integrity:** {check['integrity']}",
+                            f"- **Detail:** {check['detail']}",
+                        ]
+                    )
+            seal = item.get("capsule_external_seal")
+            if seal and seal.get("sealed_record"):
+                lines.extend(["", "#### Capsule Sealed Record", ""])
+                lines.extend(
+                    [
+                        "```json",
+                        json.dumps(seal["sealed_record"], indent=2),
+                        "```",
+                    ]
+                )
+        elif item["kind"] == "source":
             lines.extend(["", "#### Authoritative Archive Record", ""])
             lines.extend(
                 [

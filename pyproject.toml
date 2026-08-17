@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-task-state-capsule"
+version = "0.2.0"
+description = "Local-first format and CLI for versioning, handoff, and recovery of long-running AI task state."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "infinitus01"}]
+keywords = ["ai-workflow", "handoff", "developer-tools", "task-state", "codex"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[project.scripts]
+task-capsule = "task_state_capsule.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/infinitus01/ai-task-state-capsule"
+Repository = "https://github.com/infinitus01/ai-task-state-capsule"
+
+[tool.setuptools.packages.find]
+where = ["src"]
